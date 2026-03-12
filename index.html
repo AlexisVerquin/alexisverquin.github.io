@@ -170,6 +170,15 @@
       border: 2px solid var(--border);
       -webkit-box-shadow: 0px 0px 50px 22px rgba(232, 100, 58, .04);
       box-shadow: 0px 0px 50px 22px rgba(232, 100, 58, .04);
+      transition: opacity .3s ease;
+    }
+
+    .hero-photo.fade-out {
+      opacity: 0;
+    }
+
+    .hero-photo.fade-in {
+      opacity: 1;
     }
 
     .hero-info {
@@ -734,7 +743,7 @@
         display: none;
       }
 
-      .hero-scroll{
+      .hero-scroll {
         bottom: -5px;
       }
 
@@ -775,7 +784,8 @@
           </p>
         </div>
         <div class="hero-right">
-          <img src="https://placecage.lucidinternets.com/300/300" alt="Alexis Verquin" class="hero-photo">
+          <img id="hero-photo" src="https://placecage.lucidinternets.com/300/300" alt="Alexis Verquin"
+            class="hero-photo">
         </div>
       </div>
 
@@ -800,51 +810,63 @@
 
     <div class="skills-grid">
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/php.svg" alt="PHP logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/php.svg" alt="PHP logo"
+          aria-hidden="true" />
         <div class="skill-name">PHP</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/symfony.svg" alt="Symfony logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/symfony.svg"
+          alt="Symfony logo" aria-hidden="true" />
         <div class="skill-name">Symfony</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/magento.svg" alt="Magento logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/magento.svg"
+          alt="Magento logo" aria-hidden="true" />
         <div class="skill-name">Magento 2</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vuedotjs.svg" alt="Vue.js logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vuedotjs.svg"
+          alt="Vue.js logo" aria-hidden="true" />
         <div class="skill-name">Vue.js</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/typescript.svg" alt="TypeScript logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/typescript.svg"
+          alt="TypeScript logo" aria-hidden="true" />
         <div class="skill-name">TypeScript</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/javascript.svg" alt="JavaScript logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/javascript.svg"
+          alt="JavaScript logo" aria-hidden="true" />
         <div class="skill-name">JavaScript</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/angular.svg" alt="Angular logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/angular.svg"
+          alt="Angular logo" aria-hidden="true" />
         <div class="skill-name">Angular</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/docker.svg" alt="Docker logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/docker.svg"
+          alt="Docker logo" aria-hidden="true" />
         <div class="skill-name">Docker</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mysql.svg" alt="MySQL logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mysql.svg" alt="MySQL logo"
+          aria-hidden="true" />
         <div class="skill-name">MySQL</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg" alt="Swagger / API logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg"
+          alt="Swagger / API logo" aria-hidden="true" />
         <div class="skill-name">API REST</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/githubactions.svg" alt="CI/CD logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/githubactions.svg"
+          alt="CI/CD logo" aria-hidden="true" />
         <div class="skill-name">CI/CD</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" alt="Code Review logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"
+          alt="Code Review logo" aria-hidden="true" />
         <div class="skill-name">Code Review</div>
       </div>
     </div>
@@ -1068,6 +1090,36 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.job-entry').forEach(el => observer.observe(el));
+
+    // image swap with fade effect
+    const heroPhoto = document.getElementById('hero-photo');
+    const originalSrc = heroPhoto.getAttribute('src');
+    const hoverSrc = 'https://placecage.lucidinternets.com/400/400';
+
+    /**
+     * fade the image, swap source then fade back in
+     * @param {string} newSrc
+     */
+    function swapImage(newSrc) {
+      // start fade out
+      heroPhoto.classList.add('fade-out');
+      heroPhoto.classList.remove('fade-in');
+
+      // when transition ends, change the source and fade in
+      const onTransitionEnd = () => {
+        heroPhoto.removeEventListener('transitionend', onTransitionEnd);
+        heroPhoto.setAttribute('src', newSrc);
+        // force a reflow to ensure class change is noticed
+        void heroPhoto.offsetWidth;
+        heroPhoto.classList.remove('fade-out');
+        heroPhoto.classList.add('fade-in');
+      };
+
+      heroPhoto.addEventListener('transitionend', onTransitionEnd);
+    }
+
+    heroPhoto.addEventListener('mouseover', () => swapImage(hoverSrc));
+    heroPhoto.addEventListener('mouseout', () => swapImage(originalSrc));
   </script>
   <script type="application/ld+json">
   {

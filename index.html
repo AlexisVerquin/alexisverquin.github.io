@@ -176,7 +176,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
     }
 
     .hero-tag {
@@ -355,10 +355,11 @@
 
     .skill-item {
       background: var(--surface);
-      padding: 24px 28px;
+      padding: 18px 22px;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
       transition: background .2s;
       position: relative;
       overflow: hidden;
@@ -381,6 +382,13 @@
 
     .skill-item:hover::before {
       width: 100%;
+    }
+
+    .skill-icon {
+      width: 20px;
+      height: 20px;
+      filter: invert(48%) sepia(83%) saturate(3171%) hue-rotate(354deg) brightness(106%) contrast(109%);
+      flex-shrink: 0;
     }
 
     .skill-name {
@@ -586,9 +594,10 @@
     }
 
     .contact-link-icon {
-      font-size: 18px;
+      font-size: 25px;
       width: 28px;
       text-align: center;
+      filter: invert(48%) sepia(83%) saturate(3171%) hue-rotate(354deg) brightness(106%) contrast(109%);
     }
 
     .contact-link-label {
@@ -791,39 +800,51 @@
 
     <div class="skills-grid">
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/php.svg" alt="PHP logo" aria-hidden="true" />
         <div class="skill-name">PHP</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/symfony.svg" alt="Symfony logo" aria-hidden="true" />
         <div class="skill-name">Symfony</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/magento.svg" alt="Magento logo" aria-hidden="true" />
         <div class="skill-name">Magento 2</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vuedotjs.svg" alt="Vue.js logo" aria-hidden="true" />
         <div class="skill-name">Vue.js</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/typescript.svg" alt="TypeScript logo" aria-hidden="true" />
         <div class="skill-name">TypeScript</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/javascript.svg" alt="JavaScript logo" aria-hidden="true" />
         <div class="skill-name">JavaScript</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/angular.svg" alt="Angular logo" aria-hidden="true" />
         <div class="skill-name">Angular</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/docker.svg" alt="Docker logo" aria-hidden="true" />
         <div class="skill-name">Docker</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mysql.svg" alt="MySQL logo" aria-hidden="true" />
         <div class="skill-name">MySQL</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg" alt="Swagger / API logo" aria-hidden="true" />
         <div class="skill-name">API REST</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/githubactions.svg" alt="CI/CD logo" aria-hidden="true" />
         <div class="skill-name">CI/CD</div>
       </div>
       <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" alt="Code Review logo" aria-hidden="true" />
         <div class="skill-name">Code Review</div>
       </div>
     </div>
@@ -999,7 +1020,7 @@
         </div>
         <div class="contact-links">
           <a href="mailto:alexis.verquin@gmail.com" class="contact-link">
-            <div class="contact-link-icon">✉</div>
+            <div class="contact-link-icon" style="font-size: 35px;">✉</div>
             <div>
               <span class="contact-link-label">Email</span>
               alexis.verquin@gmail.com

@@ -1,221 +1,890 @@
----
-layout: default
-title: Alexis Verquin - Lead Developer
----
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexis Verquin — Lead Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-margin:0;
-background:#f5f6f8;
-color:#333;
-}
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --border: #262626;
+    --accent: #e8643a;
+    --accent2: #f0a882;
+    --text: #e8e4dc;
+    --muted: #7a7570;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Playfair Display', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px 20px;
-display:grid;
-grid-template-columns:300px 1fr;
-gap:40px;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.card{
-background:white;
-padding:25px;
-border-radius:8px;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
+  html { scroll-behavior: smooth; }
 
-h1{
-margin:0;
-font-size:32px;
-}
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-h2{
-margin-top:0;
-color:#BB441A;
-}
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: .4;
+  }
 
-h3{
-margin-bottom:5px;
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s, background .3s;
+  }
 
-.sidebar h2{
-margin-top:25px;
-}
+  nav.scrolled {
+    background: rgba(14,14,14,.92);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--border);
+  }
 
-.skills span{
-display:inline-block;
-background:#eee;
-padding:6px 10px;
-margin:4px;
-border-radius:4px;
-font-size:13px;
-}
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
 
-.job{
-margin-bottom:30px;
-}
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
 
-.job-title{
-font-weight:bold;
-font-size:16px;
-}
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
 
-.job-meta{
-color:#777;
-font-size:13px;
-margin-bottom:6px;
-}
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(232,100,58,.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(232,100,58,.04) 0%, transparent 50%);
+  }
 
-ul{
-padding-left:18px;
-margin-top:6px;
-}
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: .3;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  }
 
-.contact a{
-color:#BB441A;
-text-decoration:none;
-}
+  .hero-content {
+    position: relative;
+    max-width: 1100px;
+    margin: auto;
+    width: 100%;
+  }
 
-@media(max-width:900px){
-.container{
-grid-template-columns:1fr;
-}
-}
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp .6s .2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1.hero-name {
+    font-family: var(--serif);
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -.02em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp .7s .35s forwards;
+  }
+
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp .7s .5s forwards;
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 16px;
+    color: #b0aca4;
+    line-height: 1.8;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp .7s .65s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp .7s .8s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all .25s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+
+  .hero-scroll span {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: .1em;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    letter-spacing: -.01em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .skill-item {
+    background: var(--surface);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: background .2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width .3s;
+  }
+
+  .skill-item:hover { background: #1c1c1c; }
+  .skill-item:hover::before { width: 100%; }
+
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .skill-level {
+    display: flex;
+    gap: 4px;
+  }
+
+  .skill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .skill-dot.active { background: var(--accent); }
+
+  /* ── TIMELINE / EXPERIENCE ── */
+  .timeline { position: relative; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(var(--accent), var(--border) 80%, transparent);
+  }
+
+  .job-entry {
+    padding-left: 40px;
+    margin-bottom: 56px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity .5s, transform .5s;
+  }
+
+  .job-entry.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .job-entry::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent);
+  }
+
+  .job-entry:not(:first-child)::before {
+    background: var(--border);
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--border);
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .job-company {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .job-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .08em;
+    background: rgba(232,100,58,.08);
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(232,100,58,.2);
+    white-space: nowrap;
+  }
+
+  .job-role {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .08em;
+    margin-bottom: 16px;
+  }
+
+  .job-tasks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .job-tasks li {
+    display: flex;
+    gap: 12px;
+    color: #a09c96;
+    font-size: 14px;
+  }
+
+  .job-tasks li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 100px 60px;
+  }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,100,58,.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-text h3 {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .contact-text p { color: var(--muted); font-size: 15px; }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all .25s;
+    font-size: 14px;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    background: rgba(232,100,58,.05);
+    color: var(--accent);
+  }
+
+  .contact-link-icon {
+    font-size: 18px;
+    width: 28px;
+    text-align: center;
+  }
+
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .08em;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ── LANGUAGES ── */
+  .lang-cards {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .lang-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .lang-flag { font-size: 28px; }
+
+  .lang-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .lang-level {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50%       { opacity: .4; transform: scaleY(.7); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 80px; }
+    section { padding: 72px 24px; }
+    .contact-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 36px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+    .contact-section { padding: 72px 24px; }
+  }
 </style>
+</head>
+<body>
 
-<div class="container">
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">AV/dev</div>
+  <ul class="nav-links">
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<div class="sidebar">
-
-<div class="card">
-<h1>Alexis Verquin</h1>
-<p><strong>Lead Developer</strong></p>
-
-<div class="contact">
-<p>📍 Sautron, France</p>
-<p>📧 <a href="mailto:alexis.verquin@gmail.com">alexis.verquin@gmail.com</a></p>
-<p>📞 06.46.91.00.33</p>
-<p><a href="https://www.linkedin.com/in/alexis-verquin-a4924a43">LinkedIn</a></p>
-</div>
-</div>
-
-<div class="card">
-<h2>Compétences</h2>
-
-<div class="skills">
-<span>PHP</span>
-<span>Symfony</span>
-<span>Magento2</span>
-<span>API REST</span>
-<span>JavaScript</span>
-<span>Vue.js</span>
-<span>Angular</span>
-<span>TypeScript</span>
-<span>MySQL</span>
-<span>Docker</span>
-<span>CI/CD</span>
-<span>Code Review</span>
-</div>
-
-<h2>Langues</h2>
-<p>🇫🇷 Français (natif)</p>
-<p>🇬🇧 Anglais (notions)</p>
-
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Lead Developer · Nantes, France</div>
+    <h1 class="hero-name">Alexis<br><em>Verquin</em></h1>
+    <p class="hero-title">PHP / Symfony · Vue.js · Docker · Architecture</p>
+    <p class="hero-desc">
+      Développeur expérimenté avec une forte appétence pour l'architecture applicative et la qualité logicielle.
+      J'accompagne les équipes dans la conception de plateformes web performantes et maintenables.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Me contacter →</a>
+      <a href="#experience" class="btn btn-ghost">Voir mon parcours</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
 </div>
 
+<!-- SKILLS -->
+<section id="competences">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Compétences</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-name">PHP</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Symfony</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Magento 2</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Vue.js</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">TypeScript</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">JavaScript</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Angular</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Docker</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">MySQL</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">API REST</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">CI/CD</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot"></div>
+      </div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Code Review</div>
+      <div class="skill-level">
+        <div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div><div class="skill-dot active"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 64px;">
+    <div class="section-header" style="margin-bottom: 32px;">
+      <span class="section-num" style="font-size:11px">—</span>
+      <h3 style="font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; font-weight: 400;">Langues</h3>
+    </div>
+    <div class="lang-cards">
+      <div class="lang-card">
+        <div class="lang-flag">🇫🇷</div>
+        <div>
+          <div class="lang-name">Français</div>
+          <div class="lang-level">Natif</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇬🇧</div>
+        <div>
+          <div class="lang-name">Anglais</div>
+          <div class="lang-level">Notions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Expérience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="job-entry">
+      <div class="job-header">
+        <div class="job-company">ENPC</div>
+        <div class="job-period">Oct 2023 → Présent</div>
+      </div>
+      <div class="job-role">DÉVELOPPEUR WEB · NANTES</div>
+      <ul class="job-tasks">
+        <li>Développement de fonctionnalités sur une application de gestion</li>
+        <li>Refonte complète du frontend avec Vue.js, Vite et TypeScript</li>
+        <li>Mise en place d'une nouvelle interface utilisateur</li>
+        <li>Maintenance applicative et amélioration continue</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <div class="job-company">Groupe SII</div>
+        <div class="job-period">Sep 2022 → Déc 2023</div>
+      </div>
+      <div class="job-role">LEAD DÉVELOPPEUR PHP · NANTES</div>
+      <ul class="job-tasks">
+        <li>Développement d'applications PHP / Symfony</li>
+        <li>Supervision de la maintenance opérationnelle</li>
+        <li>Mise en place d'environnements Docker</li>
+        <li>Mentorat de développeurs juniors</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <div class="job-company">Smile</div>
+        <div class="job-period">Sep 2020 → Oct 2022</div>
+      </div>
+      <div class="job-role">DÉVELOPPEUR WEB · NANTES</div>
+      <ul class="job-tasks">
+        <li>Développement Magento2 / Symfony</li>
+        <li>Maintenance et évolution de plateformes e-commerce</li>
+        <li>Gestion des environnements Docker</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <div class="job-company">Freelance</div>
+        <div class="job-period">Juil 2019 → Août 2020</div>
+      </div>
+      <div class="job-role">DÉVELOPPEUR INDÉPENDANT</div>
+      <ul class="job-tasks">
+        <li>Développement d'applications web sur mesure</li>
+        <li>Gestion DNS, hébergement et administration système</li>
+        <li>Formation de développeurs débutants</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <div class="job-company">Institut MDTC</div>
+        <div class="job-period">Mar 2018 → Avr 2020</div>
+      </div>
+      <div class="job-role">DÉVELOPPEUR WEB · LILLE</div>
+      <ul class="job-tasks">
+        <li>Développement d'applications web</li>
+        <li>Administration système et supervision des environnements</li>
+      </ul>
+    </div>
+
+    <div class="job-entry">
+      <div class="job-header">
+        <div class="job-company">Pictime</div>
+        <div class="job-period">Août 2016 → Août 2018</div>
+      </div>
+      <div class="job-role">DÉVELOPPEUR WEB · LILLE</div>
+      <ul class="job-tasks">
+        <li>Maintenance applicative Magento</li>
+        <li>Administration système et hébergement</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-text">
+        <h3>Travaillons<br><em style="font-family: var(--serif); font-style: italic; color: var(--accent);">ensemble.</em></h3>
+        <p style="margin-top: 16px;">
+          Disponible pour des opportunités en CDI, freelance ou consulting.
+          N'hésitez pas à me contacter pour discuter de vos projets.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:alexis.verquin@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div>
+            <span class="contact-link-label">Email</span>
+            alexis.verquin@gmail.com
+          </div>
+        </a>
+        <a href="tel:0646910033" class="contact-link">
+          <div class="contact-link-icon">☎</div>
+          <div>
+            <span class="contact-link-label">Téléphone</span>
+            06.46.91.00.33
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/alexis-verquin-a4924a43" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <div>
+            <span class="contact-link-label">LinkedIn</span>
+            alexis-verquin
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="main">
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Alexis Verquin</span></p>
+  <p>Sautron, France · Lead Developer</p>
+</footer>
 
-<div class="card">
-<h2>Profil</h2>
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-<p>
-Développeur PHP / Symfony expérimenté avec une forte appétence pour
-l’architecture applicative et la qualité logicielle.
-J’accompagne les équipes dans la conception et l’évolution de
-plateformes web performantes en mettant l’accent sur la maintenabilité,
-les bonnes pratiques et la fiabilité des environnements Docker.
-</p>
+  // Scroll reveal for timeline entries
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
 
-</div>
-
-<div class="card">
-<h2>Expériences professionnelles</h2>
-
-<div class="job">
-<div class="job-title">Développeur Web — ENPC</div>
-<div class="job-meta">Nantes • Oct 2023 – Présent</div>
-
-<ul>
-<li>Développement de fonctionnalités sur une application de gestion</li>
-<li>Refonte complète du frontend avec Vue.js, Vite et TypeScript</li>
-<li>Mise en place d'une nouvelle interface utilisateur</li>
-<li>Maintenance applicative et amélioration continue</li>
-</ul>
-</div>
-
-<div class="job">
-<div class="job-title">Lead Développeur PHP — Groupe SII</div>
-<div class="job-meta">Nantes • Sep 2022 – Déc 2023</div>
-
-<ul>
-<li>Développement d’applications PHP / Symfony</li>
-<li>Supervision de la maintenance opérationnelle</li>
-<li>Mise en place d'environnements Docker</li>
-<li>Mentorat de développeurs juniors</li>
-</ul>
-</div>
-
-<div class="job">
-<div class="job-title">Développeur Web — Smile</div>
-<div class="job-meta">Nantes • Sep 2020 – Oct 2022</div>
-
-<ul>
-<li>Développement Magento2 / Symfony</li>
-<li>Maintenance et évolution de plateformes</li>
-<li>Gestion des environnements Docker</li>
-</ul>
-</div>
-
-<div class="job">
-<div class="job-title">Développeur Freelance</div>
-<div class="job-meta">Juil 2019 – Aoû 2020</div>
-
-<ul>
-<li>Développement d’applications web sur mesure</li>
-<li>Gestion DNS et hébergement</li>
-<li>Formation de développeurs débutants</li>
-<li>Administration système</li>
-</ul>
-</div>
-
-<div class="job">
-<div class="job-title">Développeur Web — Institut MDTC</div>
-<div class="job-meta">Lille • Mar 2018 – Avr 2020</div>
-
-<ul>
-<li>Développement d’applications web</li>
-<li>Administration système</li>
-<li>Supervision des environnements</li>
-</ul>
-</div>
-
-<div class="job">
-<div class="job-title">Développeur Web — Pictime</div>
-<div class="job-meta">Lille • Aoû 2016 – Aoû 2018</div>
-
-<ul>
-<li>Maintenance applicative Magento</li>
-<li>Administration système et hébergement</li>
-</ul>
-</div>
-
-</div>
-
-</div>
-
-</div>
+  document.querySelectorAll('.job-entry').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

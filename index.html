@@ -106,24 +106,37 @@
       text-transform: uppercase;
     }
 
-    .nav-links {
+    .nav-links, .nav-dw {
       display: flex;
       gap: 36px;
       list-style: none;
     }
 
-    .nav-links a {
+    .nav-links a, .nav-dw a {
       font-family: var(--mono);
       font-size: 12px;
       letter-spacing: .1em;
       color: var(--muted);
       text-decoration: none;
       text-transform: uppercase;
-      transition: color .2s;
+      transition: color .2s, background-color .2s;
     }
 
     .nav-links a:hover {
       color: var(--text);
+    }
+
+    .dw-cv {
+      font-weight: bold;
+      color: var(--accent) !important;
+      border: 2px solid var(--accent);
+      padding: 0.4rem 1rem ;
+      border-radius: 4px;
+    }
+
+    .dw-cv:hover {
+      color: var(--text) !important;
+      background-color: var(--accent);
     }
 
     /* ── HERO ── */
@@ -715,6 +728,10 @@
         display: none;
       }
 
+      .nav-dw a {
+        font-size: 0.6em;
+      }
+
       .hero {
         padding: 100px 24px 80px;
       }
@@ -765,6 +782,9 @@
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <ul class="nav-dw">
+      <li><a href="Alexis-Verquin-CV.pdf" class="dw-cv" download="Alexis-Verquin-CV.pdf">Télécharger le CV</a></li>
+    </ul>
   </nav>
 
   <!-- HERO -->
@@ -784,7 +804,7 @@
           </p>
         </div>
         <div class="hero-right">
-          <img id="hero-photo" src="https://placecage.lucidinternets.com/300/300" alt="Alexis Verquin"
+          <img id="hero-photo" src="photo.webp" alt="Alexis Verquin"
             class="hero-photo">
         </div>
       </div>
@@ -909,7 +929,7 @@
       <div class="job-entry">
         <div class="job-header">
           <div class="job-company">ENPC</div>
-          <div class="job-period">Oct 2023 → Présent</div>
+          <div class="job-period">Octobre 2023 → Présent</div>
         </div>
         <div class="job-role">DÉVELOPPEUR WEB · NANTES</div>
         <ul class="job-tasks">
@@ -923,7 +943,7 @@
       <div class="job-entry">
         <div class="job-header">
           <div class="job-company">Groupe SII</div>
-          <div class="job-period">Sep 2022 → Déc 2023</div>
+          <div class="job-period">Octobre 2022 → Octobre 2023</div>
         </div>
         <div class="job-role">LEAD DÉVELOPPEUR PHP · NANTES</div>
         <ul class="job-tasks">
@@ -937,7 +957,7 @@
       <div class="job-entry">
         <div class="job-header">
           <div class="job-company">Smile</div>
-          <div class="job-period">Sep 2020 → Oct 2022</div>
+          <div class="job-period">Août 2020 → Octobre 2022</div>
         </div>
         <div class="job-role">DÉVELOPPEUR WEB · NANTES</div>
         <ul class="job-tasks">
@@ -950,7 +970,7 @@
       <div class="job-entry">
         <div class="job-header">
           <div class="job-company">Freelance</div>
-          <div class="job-period">Juil 2019 → Août 2020</div>
+          <div class="job-period">Juillet 2019 → Août 2020</div>
         </div>
         <div class="job-role">DÉVELOPPEUR INDÉPENDANT</div>
         <ul class="job-tasks">
@@ -963,7 +983,7 @@
       <div class="job-entry">
         <div class="job-header">
           <div class="job-company">Institut MDTC</div>
-          <div class="job-period">Mar 2018 → Avr 2020</div>
+          <div class="job-period">Mars 2018 → Avril 2020</div>
         </div>
         <div class="job-role">DÉVELOPPEUR WEB · LILLE</div>
         <ul class="job-tasks">
@@ -975,7 +995,7 @@
       <div class="job-entry">
         <div class="job-header">
           <div class="job-company">Pictime</div>
-          <div class="job-period">Août 2016 → Août 2018</div>
+          <div class="job-period">Octobre 2016 → Mars 2018</div>
         </div>
         <div class="job-role">DÉVELOPPEUR WEB · LILLE</div>
         <ul class="job-tasks">
@@ -1094,7 +1114,7 @@
     // image swap with fade effect
     const heroPhoto = document.getElementById('hero-photo');
     const originalSrc = heroPhoto.getAttribute('src');
-    const hoverSrc = 'https://placecage.lucidinternets.com/400/400';
+    const hoverSrc = 'https://placecage.lucidinternets.com/300/300';
 
     /**
      * fade the image, swap source then fade back in

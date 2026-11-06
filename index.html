@@ -377,6 +377,25 @@
       margin-top: 0;
     }
 
+    .ai-panel {
+      margin-top: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .ai-panel-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+
     .skill-item {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -545,6 +564,72 @@
       font-size: 12px;
       flex-shrink: 0;
       margin-top: 3px;
+    }
+
+    /* ── RÉALISATIONS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .25s, transform .25s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(232, 100, 58, .5);
+      transform: translateY(-2px);
+    }
+
+    .project-client {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .project-desc {
+      color: #a09c96;
+      font-size: 14px;
+    }
+
+    .project-result {
+      font-size: 14px;
+      color: var(--accent2);
+    }
+
+    .project-tags {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .project-tags li {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 3px 8px;
     }
 
     /* ── CONTACT ── */
@@ -778,6 +863,12 @@
         gap: 36px;
       }
 
+      .ai-panel {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 24px;
+      }
+
       footer {
         flex-direction: column;
         gap: 8px;
@@ -811,6 +902,7 @@
     <ul class="nav-links">
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#experience">Expérience</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
       <li><a href="#formation">Formation</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -834,6 +926,7 @@
             Développeur web PHP / Symfony depuis plus de 10 ans, également à l'aise sur le front-end (Vue.js, TypeScript).
             J'ai mené des refontes et fait évoluer des plateformes pour le Groupe La Poste, Illicado, Flunch ou Maisons du Monde,
             et encadré des développeurs juniors en tant que Lead Développeur.
+            J'utilise l'IA au quotidien (Claude Code, GitHub Copilot), avec relecture et tests systématiques.
           </p>
         </div>
         <div class="hero-right">
@@ -948,6 +1041,46 @@
       </div>
     </div>
 
+    <h3 class="skills-group-title">IA &amp; outils</h3>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/claude.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Claude Code</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubcopilot.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">GitHub Copilot</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/anthropic.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Chatbot IA</div>
+      </div>
+    </div>
+
+    <div class="ai-panel">
+      <div>
+        <h4 class="ai-panel-title">Comment j'utilise l'IA</h4>
+        <ul class="job-tasks">
+          <li>Webdesign et prototypage d'interfaces</li>
+          <li>Écriture de tests</li>
+          <li>Rédaction de documentation</li>
+          <li>Intégration d'une IA dans une application : chatbot</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ai-panel-title">Mes garde-fous</h4>
+        <ul class="job-tasks">
+          <li>Aucun code client transmis à l'IA</li>
+          <li>Jamais de fichiers .env, secrets ou codes d'accès</li>
+          <li>Relecture systématique du code généré</li>
+          <li>Code généré testé avant toute mise en production</li>
+        </ul>
+      </div>
+    </div>
+
     <div style="margin-top: 64px;">
       <div class="section-header" style="margin-bottom: 32px;">
         <span class="section-num" style="font-size:11px">—</span>
@@ -994,6 +1127,7 @@
           <li>Mise en place d'une nouvelle interface utilisateur</li>
           <li>Modernisation du backend Symfony : changement de SSO, mise à jour des API</li>
           <li>Développement de fonctionnalités, maintenance applicative et amélioration continue</li>
+          <li>Usage encadré de l'IA (Claude Code, GitHub Copilot) : webdesign, tests, documentation</li>
         </ul>
       </div>
 
@@ -1081,10 +1215,97 @@
     </div>
   </section>
 
+  <!-- RÉALISATIONS -->
+  <section id="realisations" style="padding-top: 0;">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Réalisations</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="project-client">ENPC · 2023 → aujourd'hui</div>
+        <h3 class="project-title">Refonte d'une application de gestion</h3>
+        <p class="project-desc">
+          Application métier vieillissante, alourdie par du code historique. Refonte complète du frontend
+          en Vue.js / TypeScript avec une nouvelle interface, et modernisation du backend Symfony
+          (changement de SSO, mise à jour des API).
+        </p>
+        <p class="project-result">→ Application plus fluide, code historique réduit</p>
+        <ul class="project-tags">
+          <li>Vue.js</li><li>TypeScript</li><li>Vite</li><li>Symfony</li><li>SSO</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <div class="project-client">Groupe La Poste · via Groupe SII</div>
+        <h3 class="project-title">Applications produit</h3>
+        <p class="project-desc">
+          Lead Développeur sur le développement d'applications produit PHP / Symfony : mise en place
+          des environnements Docker, mentorat des développeurs juniors et supervision du maintien
+          en condition opérationnelle.
+        </p>
+        <p class="project-result">→ Encadrement technique de l'équipe</p>
+        <ul class="project-tags">
+          <li>PHP 8</li><li>Symfony</li><li>Vue.js</li><li>Docker</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <div class="project-client">Illicado · via Smile</div>
+        <h3 class="project-title">Refonte complète de l'application</h3>
+        <p class="project-desc">
+          Participation à la refonte de l'ensemble de l'application Illicado,
+          spécialiste des cartes cadeaux multi-enseignes.
+        </p>
+        <ul class="project-tags">
+          <li>PHP</li><li>Symfony</li><li>Docker</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <div class="project-client">Flunch · via Smile</div>
+        <h3 class="project-title">Site traiteur</h3>
+        <p class="project-desc">
+          Développement du site de commande traiteur de Flunch, dans le cadre des projets
+          e-commerce menés chez Smile.
+        </p>
+        <ul class="project-tags">
+          <li>Magento 2</li><li>PHP</li><li>Docker</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <div class="project-client">Auchan · Decathlon · Vertbaudet · via Institut MDTC</div>
+        <h3 class="project-title">Back-offices et questionnaires de satisfaction</h3>
+        <p class="project-desc">
+          Création de back-offices et de questionnaires de satisfaction client pour de grandes enseignes,
+          avec API REST et optimisation des requêtes SQL.
+        </p>
+        <ul class="project-tags">
+          <li>Symfony</li><li>API REST</li><li>MySQL</li><li>jQuery</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <div class="project-client">Support RGS</div>
+        <h3 class="project-title">Certificats numériques Certigna</h3>
+        <p class="project-desc">
+          Développement d'applications connectées à l'API de l'autorité de certification Certigna
+          pour la création de certificats numériques.
+        </p>
+        <ul class="project-tags">
+          <li>PHP</li><li>API</li><li>Linux</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
   <!-- FORMATION -->
   <section id="formation">
     <div class="section-header">
-      <span class="section-num">03</span>
+      <span class="section-num">04</span>
       <h2 class="section-title">Formation</h2>
       <div class="section-line"></div>
     </div>
@@ -1129,7 +1350,7 @@
   <div class="contact-section" id="contact">
     <div class="contact-inner">
       <div class="section-header">
-        <span class="section-num">04</span>
+        <span class="section-num">05</span>
         <h2 class="section-title">Contact</h2>
         <div class="section-line"></div>
       </div>

@@ -4,28 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alexis Verquin — Lead Developer</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Alexis Verquin — Développeur Web PHP / Symfony</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description"
-    content="Alexis Verquin — Lead Developer PHP/Symfony basé à Nantes. Spécialisé en architecture applicative, Vue.js, Docker et qualité logicielle.">
+    content="Alexis Verquin — Développeur Web PHP / Symfony basé à Nantes, expérience de Lead Développeur. Vue.js, TypeScript, Docker et qualité logicielle.">
   <meta name="author" content="Alexis Verquin">
+  <script>document.documentElement.classList.add('js');</script>
   <meta name="robots" content="index, follow">
 
   <link rel="canonical" href="https://alexisverquin.github.io/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Alexis Verquin — Lead Developer">
+  <meta property="og:title" content="Alexis Verquin — Développeur Web PHP / Symfony">
   <meta property="og:description"
-    content="Lead Developer PHP/Symfony basé à Nantes. Spécialisé en architecture applicative, Vue.js et Docker.">
+    content="Développeur Web PHP / Symfony basé à Nantes, expérience de Lead Développeur. Vue.js, TypeScript et Docker.">
   <meta property="og:url" content="https://alexisverquin.github.io/">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:image" content="https://alexisverquin.github.io/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Alexis Verquin — Lead Developer">
-  <meta name="twitter:description" content="Lead Developer PHP/Symfony basé à Nantes.">
+  <meta name="twitter:title" content="Alexis Verquin — Développeur Web PHP / Symfony">
+  <meta name="twitter:description" content="Développeur Web PHP / Symfony basé à Nantes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap"
@@ -183,15 +184,6 @@
       border: 2px solid var(--border);
       -webkit-box-shadow: 0px 0px 50px 22px rgba(232, 100, 58, .04);
       box-shadow: 0px 0px 50px 22px rgba(232, 100, 58, .04);
-      transition: opacity .3s ease;
-    }
-
-    .hero-photo.fade-out {
-      opacity: 0;
-    }
-
-    .hero-photo.fade-in {
-      opacity: 1;
     }
 
     .hero-info {
@@ -367,16 +359,28 @@
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+
+    .skills-group-title {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 400;
+      margin: 32px 0 14px;
+    }
+
+    .skills-group-title:first-of-type {
+      margin-top: 0;
     }
 
     .skill-item {
       background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
       padding: 18px 22px;
       display: flex;
       flex-direction: row;
@@ -455,12 +459,16 @@
       padding-left: 40px;
       margin-bottom: 56px;
       position: relative;
+    }
+
+    /* masqué seulement si le JS tourne, sinon le parcours reste lisible */
+    .js .job-entry {
       opacity: 0;
       transform: translateX(-12px);
       transition: opacity .5s, transform .5s;
     }
 
-    .job-entry.visible {
+    .js .job-entry.visible {
       opacity: 1;
       transform: translateX(0);
     }
@@ -718,6 +726,30 @@
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .hero-tag,
+      h1.hero-name,
+      .hero-title,
+      .hero-desc,
+      .hero-actions,
+      .hero-scroll,
+      .js .job-entry {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav {
@@ -779,7 +811,7 @@
     <ul class="nav-links">
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#experience">Expérience</a></li>
-      <li><a href="#education">Education</a></li>
+      <li><a href="#formation">Formation</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <ul class="nav-dw">
@@ -794,18 +826,18 @@
     <div class="hero-content">
       <div class="hero-info">
         <div class="hero-left">
-          <div class="hero-tag">Lead Developer · Nantes, France</div>
+          <div class="hero-tag">Développeur Web · Nantes, France</div>
           <h1 class="hero-name">Alexis<br><em>Verquin</em></h1>
           <p class="hero-title">PHP / Symfony · Vue.js · Docker · Architecture</p>
 
           <p class="hero-desc">
-            Développeur expérimenté avec une forte appétence pour l'architecture applicative et la qualité logicielle.
-            J'accompagne les équipes dans la conception de plateformes web performantes et maintenables.
+            Développeur web PHP / Symfony depuis plus de 10 ans, également à l'aise sur le front-end (Vue.js, TypeScript).
+            J'ai mené des refontes et fait évoluer des plateformes pour le Groupe La Poste, Illicado, Flunch ou Maisons du Monde,
+            et encadré des développeurs juniors en tant que Lead Développeur.
           </p>
         </div>
         <div class="hero-right">
-          <img id="hero-photo" src="photo.webp" alt="Alexis Verquin"
-            class="hero-photo">
+          <img src="photo.webp" alt="Alexis Verquin" class="hero-photo">
         </div>
       </div>
 
@@ -816,7 +848,7 @@
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
-      <span>Scroll</span>
+      <span>Défiler</span>
     </div>
   </div>
 
@@ -828,65 +860,90 @@
       <div class="section-line"></div>
     </div>
 
+    <!-- Icônes simple-icons : version figée (13.21.0 est la dernière à contenir Magento) -->
+    <h3 class="skills-group-title">Back-end</h3>
     <div class="skills-grid">
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/php.svg" alt="PHP logo"
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/php.svg" alt=""
           aria-hidden="true" />
         <div class="skill-name">PHP</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/symfony.svg"
-          alt="Symfony logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/symfony.svg"
+          alt="" aria-hidden="true" />
         <div class="skill-name">Symfony</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/magento.svg"
-          alt="Magento logo" aria-hidden="true" />
-        <div class="skill-name">Magento 2</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vuedotjs.svg"
-          alt="Vue.js logo" aria-hidden="true" />
-        <div class="skill-name">Vue.js</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/typescript.svg"
-          alt="TypeScript logo" aria-hidden="true" />
-        <div class="skill-name">TypeScript</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/javascript.svg"
-          alt="JavaScript logo" aria-hidden="true" />
-        <div class="skill-name">JavaScript</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/angular.svg"
-          alt="Angular logo" aria-hidden="true" />
-        <div class="skill-name">Angular</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/docker.svg"
-          alt="Docker logo" aria-hidden="true" />
-        <div class="skill-name">Docker</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mysql.svg" alt="MySQL logo"
-          aria-hidden="true" />
-        <div class="skill-name">MySQL</div>
-      </div>
-      <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg"
-          alt="Swagger / API logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/swagger.svg"
+          alt="" aria-hidden="true" />
         <div class="skill-name">API REST</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/githubactions.svg"
-          alt="CI/CD logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/magento.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Magento 2</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/mysql.svg" alt=""
+          aria-hidden="true" />
+        <div class="skill-name">MySQL / MariaDB</div>
+      </div>
+    </div>
+
+    <h3 class="skills-group-title">Front-end</h3>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/vuedotjs.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Vue.js</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/typescript.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">TypeScript</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/javascript.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">JavaScript</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/angular.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Angular</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/vite.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Vite</div>
+      </div>
+    </div>
+
+    <h3 class="skills-group-title">DevOps &amp; méthodes</h3>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/docker.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Docker</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/gitlab.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">GitLab</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/linux.svg"
+          alt="" aria-hidden="true" />
+        <div class="skill-name">Linux</div>
+      </div>
+      <div class="skill-item">
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/githubactions.svg"
+          alt="" aria-hidden="true" />
         <div class="skill-name">CI/CD</div>
       </div>
       <div class="skill-item">
-        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"
-          alt="Code Review logo" aria-hidden="true" />
+        <img class="skill-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/git.svg"
+          alt="" aria-hidden="true" />
         <div class="skill-name">Code Review</div>
       </div>
     </div>
@@ -910,7 +967,7 @@
           <div class="lang-flag">🇬🇧</div>
           <div>
             <div class="lang-name">Anglais</div>
-            <div class="lang-level">Notions</div>
+            <div class="lang-level">Technique (documentation)</div>
           </div>
         </div>
       </div>
@@ -933,10 +990,10 @@
         </div>
         <div class="job-role">DÉVELOPPEUR WEB · NANTES</div>
         <ul class="job-tasks">
-          <li>Développement de fonctionnalités sur une application de gestion</li>
-          <li>Refonte complète du frontend avec Vue.js, Vite et TypeScript</li>
+          <li>Refonte complète du frontend d'une application de gestion avec Vue.js, Vite et TypeScript : application plus fluide, réduction du code historique</li>
           <li>Mise en place d'une nouvelle interface utilisateur</li>
-          <li>Maintenance applicative et amélioration continue</li>
+          <li>Modernisation du backend Symfony : changement de SSO, mise à jour des API</li>
+          <li>Développement de fonctionnalités, maintenance applicative et amélioration continue</li>
         </ul>
       </div>
 
@@ -947,10 +1004,10 @@
         </div>
         <div class="job-role">LEAD DÉVELOPPEUR PHP · NANTES</div>
         <ul class="job-tasks">
-          <li>Développement d'applications PHP / Symfony</li>
-          <li>Supervision de la maintenance opérationnelle</li>
-          <li>Mise en place d'environnements Docker</li>
+          <li>Développement d'applications produit PHP / Symfony pour le Groupe La Poste</li>
           <li>Mentorat de développeurs juniors</li>
+          <li>Mise en place d'environnements Docker</li>
+          <li>Supervision de la maintenance opérationnelle</li>
         </ul>
       </div>
 
@@ -959,11 +1016,12 @@
           <div class="job-company">Smile</div>
           <div class="job-period">Août 2020 → Octobre 2022</div>
         </div>
-        <div class="job-role">DÉVELOPPEUR WEB · NANTES</div>
+        <div class="job-role">INGÉNIEUR ÉTUDES ET DÉVELOPPEMENT · NANTES</div>
         <ul class="job-tasks">
-          <li>Développement Magento2 / Symfony</li>
-          <li>Maintenance et évolution de plateformes e-commerce</li>
-          <li>Gestion des environnements Docker</li>
+          <li>Illicado : refonte complète de l'application</li>
+          <li>Flunch : développement du site traiteur</li>
+          <li>Maisons du Monde : amélioration continue</li>
+          <li>Maintenance et évolution de plateformes e-commerce Magento 2 / Symfony, environnements Docker</li>
         </ul>
       </div>
 
@@ -972,11 +1030,12 @@
           <div class="job-company">Freelance</div>
           <div class="job-period">Juillet 2019 → Août 2020</div>
         </div>
-        <div class="job-role">DÉVELOPPEUR INDÉPENDANT</div>
+        <div class="job-role">DÉVELOPPEUR INDÉPENDANT · LILLE</div>
         <ul class="job-tasks">
           <li>Développement d'applications web sur mesure</li>
-          <li>Gestion DNS, hébergement et administration système</li>
-          <li>Formation de développeurs débutants</li>
+          <li>Gestion d'hébergements mutualisés et de serveurs VPS : noms de domaine, zones DNS</li>
+          <li>Maintien en condition opérationnelle des serveurs et des applications</li>
+          <li>Formation de développeurs débutants (HTML5, CSS3, JavaScript, PHP)</li>
         </ul>
       </div>
 
@@ -987,40 +1046,64 @@
         </div>
         <div class="job-role">DÉVELOPPEUR WEB · LILLE</div>
         <ul class="job-tasks">
-          <li>Développement d'applications web</li>
-          <li>Administration système et supervision des environnements</li>
+          <li>Création de back-offices et de questionnaires de satisfaction pour Auchan, Decathlon, Vertbaudet…</li>
+          <li>Développement d'applications web et création d'API REST</li>
+          <li>Accompagnement de développeurs juniors : relecture de code, montée en compétences</li>
+          <li>Optimisation SQL, administration système et supervision des environnements</li>
         </ul>
       </div>
 
       <div class="job-entry">
         <div class="job-header">
-          <div class="job-company">Pictime</div>
+          <div class="job-company">Pictime Groupe</div>
           <div class="job-period">Octobre 2016 → Mars 2018</div>
         </div>
-        <div class="job-role">DÉVELOPPEUR WEB · LILLE</div>
+        <div class="job-role">DÉVELOPPEUR WEB (ALTERNANCE) · VILLENEUVE-D'ASCQ</div>
         <ul class="job-tasks">
-          <li>Maintenance applicative Magento</li>
-          <li>Administration système et hébergement</li>
+          <li>Maintenance de plateformes e-commerce : Rougegorge, Chausport, Kiabi, Maggi…</li>
+          <li>Préparation et réalisation des mises en production</li>
+          <li>Administration des flux de données</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-header">
+          <div class="job-company">Support RGS</div>
+          <div class="job-period">Septembre 2013 → Octobre 2015</div>
+        </div>
+        <div class="job-role">DÉVELOPPEUR WEB / ADMINISTRATEUR SYSTÈME (ALTERNANCE) · LA MADELEINE</div>
+        <ul class="job-tasks">
+          <li>Développement d'applications connectées à l'API de certificats numériques Certigna</li>
+          <li>Création d'outils web internes</li>
+          <li>Administration systèmes et réseaux : serveur Samba, remise en service du SI lors d'un déménagement</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section id="education">
+  <!-- FORMATION -->
+  <section id="formation">
     <div class="section-header">
       <span class="section-num">03</span>
-      <h2 class="section-title">Education</h2>
+      <h2 class="section-title">Formation</h2>
       <div class="section-line"></div>
     </div>
 
     <div class="timeline">
       <div class="job-entry">
         <div class="job-header">
+          <div class="job-company">ASTON</div>
+          <div class="job-period">2016 - 2018</div>
+        </div>
+        <div class="job-role">Bac +5 Informatique · en alternance chez Pictime Groupe</div>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-header">
           <div class="job-company">Efficom Lille</div>
           <div class="job-period">2013 - 2015</div>
         </div>
-        <div class="job-role">BTS Services informatiques aux organisations</div>
+        <div class="job-role">BTS Services informatiques aux organisations · en alternance chez Support RGS</div>
         <ul class="job-tasks">
           <li>Formation en développement web full-stack</li>
           <li>Administration Système et réseaux</li>
@@ -1089,8 +1172,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 <span>Alexis Verquin</span></p>
-    <p>Sautron, France · Lead Developer</p>
+    <p>© 2026 <span>Alexis Verquin</span></p>
+    <p>Sautron, France · Développeur Web</p>
   </footer>
 
   <script>
@@ -1110,43 +1193,13 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.job-entry').forEach(el => observer.observe(el));
-
-    // image swap with fade effect
-    const heroPhoto = document.getElementById('hero-photo');
-    const originalSrc = heroPhoto.getAttribute('src');
-    const hoverSrc = 'https://placecage.lucidinternets.com/300/300';
-
-    /**
-     * fade the image, swap source then fade back in
-     * @param {string} newSrc
-     */
-    function swapImage(newSrc) {
-      // start fade out
-      heroPhoto.classList.add('fade-out');
-      heroPhoto.classList.remove('fade-in');
-
-      // when transition ends, change the source and fade in
-      const onTransitionEnd = () => {
-        heroPhoto.removeEventListener('transitionend', onTransitionEnd);
-        heroPhoto.setAttribute('src', newSrc);
-        // force a reflow to ensure class change is noticed
-        void heroPhoto.offsetWidth;
-        heroPhoto.classList.remove('fade-out');
-        heroPhoto.classList.add('fade-in');
-      };
-
-      heroPhoto.addEventListener('transitionend', onTransitionEnd);
-    }
-
-    heroPhoto.addEventListener('mouseover', () => swapImage(hoverSrc));
-    heroPhoto.addEventListener('mouseout', () => swapImage(originalSrc));
   </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Alexis Verquin",
-    "jobTitle": "Lead Developer",
+    "jobTitle": "Développeur Web PHP / Symfony",
     "email": "alexis.verquin@gmail.com",
     "telephone": "+33646910033",
     "address": { "@type": "PostalAddress", "addressLocality": "Sautron", "addressCountry": "FR" },
